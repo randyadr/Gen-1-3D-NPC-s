@@ -1,4 +1,12 @@
-# Gen1 TRUE 3D Characters v1.1.3
+# Gen1 TRUE 3D Characters v1.1.4
+## v1.1.4 GitHub update integration
+
+- GitHub repository is baked into `manifest.json`: `randyadr/gen1_true_3d_characters`
+- GitHub Actions publishes Gen1Recomp-compatible release ZIPs automatically
+- Release assets use the required name `gen1_true_3d_characters-X.Y.Z.zip`
+- Future versions can be detected by Gen1Recomp's Update / Versions system
+- Character/model behavior is otherwise unchanged from v1.1.3
+
 
 ## Natural hand rig
 

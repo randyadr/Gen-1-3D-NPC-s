@@ -1,7 +1,7 @@
 {
   "id": "gen1_true_3d_characters",
   "name": "Gen1 TRUE 3D Characters",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "entry": "main.lua",
   "api": 2,
   "profile": "content",
@@ -16,5 +16,5 @@
   ],
   "affects_link": false,
   "description": "Unified TRUE 3D character pack for Gen1Recomp + Dramatic Shape. Generic NPCs keep the corrected 24-pose walk rig and now use articulated relaxed hands with finger/thumb curl.",
-  "github": "YOUR_GITHUB_USERNAME/gen1_true_3d_characters"
+  "github": "randyadr/gen1_true_3d_characters"
 }

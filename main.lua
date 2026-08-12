@@ -1,4 +1,4 @@
--- Gen1 TRUE 3D Characters v1.1.3
+-- Gen1 TRUE 3D Characters v1.1.4
 -- Unified renderer: ordinary NPCs + Nurse Joy + Professor Oak.
 --
 -- One drawEntity hook owns all imported characters. This avoids chaining three
@@ -532,5 +532,5 @@ return function(mod)
 
   VoxelScene._gen1UnifiedTrue3DInstalled = true
   VoxelScene._gen1UnifiedTrue3DPreviousDrawEntity = previousDrawEntity
-  mod.log:info("Gen1 TRUE 3D Characters v1.1.3 articulated arm rig installed")
+  mod.log:info("Gen1 TRUE 3D Characters v1.1.4 articulated arm rig installed")
 end

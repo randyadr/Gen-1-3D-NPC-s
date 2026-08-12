@@ -1,48 +1,39 @@
-# GitHub auto-update setup
+# GitHub auto-update setup — v1.1.4
 
-This repository package is prepared for Gen1Recomp's built-in GitHub mod updater.
+This package is already configured for the public GitHub repository:
 
-## One-time setup
+`randyadr/gen1_true_3d_characters`
 
-1. Create a new **public GitHub repository**. Recommended repository name: `gen1_true_3d_characters`.
-2. Upload **the contents of this folder** to the repository root. `manifest.json` must be at the repository root.
-3. In `manifest.json`, replace:
+## First upload
 
-   `YOUR_GITHUB_USERNAME/gen1_true_3d_characters`
+1. Create the public GitHub repository `randyadr/gen1_true_3d_characters`.
+2. Upload **the contents of this folder** to the repository root.
+3. Make sure the default branch is `main`.
+4. Commit/push the files.
+5. GitHub Actions runs `.github/workflows/release.yml` and publishes release `v1.1.4` with:
 
-   with your real GitHub `owner/repo` (for example `SomeUser/gen1_true_3d_characters`).
-4. Commit/push to the `main` branch.
-5. GitHub Actions runs `.github/workflows/release.yml` and creates release `v1.1.3` with:
+   `gen1_true_3d_characters-1.1.4.zip`
 
-   `gen1_true_3d_characters-1.1.3.zip`
-
-6. Install that generated release ZIP once in Gen1Recomp. From then on, the installed mod contains the real `github` repo slug and the game's **Update / Versions** UI can follow future releases.
-
-> The release workflow also stamps `${{ github.repository }}` into the manifest inside every published ZIP, so even if you forget step 3, generated release ZIPs still point to the correct repository. Editing the source manifest is still recommended.
+The release workflow verifies that `manifest.json` is at the ZIP root and stamps the real GitHub repository slug into every published release.
 
 ## Future updates
 
-Normal workflow:
+For the next mod update, change the mod files and bump `manifest.json` from `1.1.4` to `1.1.5`, then push to `main`. The workflow will create:
 
-1. Change the mod files.
-2. Bump `manifest.json` `version` (recommended), e.g. `1.1.4`.
-3. Push to `main`.
-4. The GitHub Action publishes `gen1_true_3d_characters-1.1.4.zip`.
+`gen1_true_3d_characters-1.1.5.zip`
 
-If you change files without bumping `manifest.json`, the workflow follows Gen1Recomp's official release behavior and increments the newest release tag's patch version automatically.
-
-You can also run **Actions > Release > Run workflow** and enter an exact version.
+If you push a real mod-file change without manually bumping the manifest version, the workflow can increment the newest release tag's patch version automatically.
 
 ## Gen1Recomp mod index
 
-After the repository has at least one GitHub Release, submit it once to `bryanthaboi/gen1recomp-mod-index`. Use:
+After `v1.1.4` exists as a GitHub Release, submit the mod once to `bryanthaboi/gen1recomp-mod-index` with these values:
 
 - id: `gen1_true_3d_characters`
 - title: `Gen1 TRUE 3D Characters`
-- version: `1.1.3` (or whatever your first public release is)
+- version: `1.1.4`
 - categories: `ART`, `CONTENT`
-- github: your real `owner/repo`
-- repo: `https://github.com/<owner>/<repo>`
+- github: `randyadr/gen1_true_3d_characters`
+- repo: `https://github.com/randyadr/gen1_true_3d_characters`
 - automatic_version_check: `true`
 - api: `2`
 - game_version: `0.0.0-dev || >=0.1.37 <2.0.0`
@@ -50,4 +41,4 @@ After the repository has at least one GitHub Release, submit it once to `bryanth
 - permissions: `engine_internals`
 - dependency: `DRAMATIC_SHAPE@>=1.7.0 <2.0.0`
 
-Once accepted, the mod index checks GitHub Releases automatically; you do not submit a new index PR for every version.
+Once accepted, the index can follow later GitHub Releases automatically.
