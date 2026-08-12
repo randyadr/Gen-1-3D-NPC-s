@@ -1,7 +1,7 @@
-# Gen1 TRUE 3D Characters v1.1.4
-## v1.1.4 GitHub update integration
+# Gen1 TRUE 3D Characters v1.1.5
+## v1.1.5 GitHub repository fix
 
-- GitHub repository is baked into `manifest.json`: `randyadr/gen1_true_3d_characters`
+- GitHub repository is corrected in `manifest.json`: `randyadr/Gen-1-3D-NPC-s`
 - GitHub Actions publishes Gen1Recomp-compatible release ZIPs automatically
 - Release assets use the required name `gen1_true_3d_characters-X.Y.Z.zip`
 - Future versions can be detected by Gen1Recomp's Update / Versions system
