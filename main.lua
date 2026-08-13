@@ -1,4 +1,4 @@
--- Gen1 TRUE 3D Characters v1.1.4
+-- Gen1 TRUE 3D Characters v1.1.6
 -- Unified renderer: ordinary NPCs + Nurse Joy + Professor Oak.
 --
 -- One drawEntity hook owns all imported characters. This avoids chaining three
@@ -142,16 +142,49 @@ return function(mod)
     })
   end
 
+ ---------------------------------------------------------------------------
+  -- Dramatic Shape API / compatible voxel-host detection
   ---------------------------------------------------------------------------
-  -- Dramatic Shape API
-  ---------------------------------------------------------------------------
-  local ds = mod.find("DRAMATIC_SHAPE")
-  if not (ds and ds.exports and ds.exports.lib) then
-    mod.log:error("Gen1 TRUE 3D Characters requires Dramatic Shape")
+  -- The voxel renderer is intentionally treated as an optional host.
+  -- Different Dramatic Shape forks use different mod IDs (notably DRAMALESS_SHAPE).
+  -- id a hard dependency caused Gen1Recomp to reject otherwise compatible hosts
+  -- before runtime capability detection.  Detect a usable voxel host instead.
+  local DRAMATIC_SHAPE_IDS = {
+    "DRAMALESS_SHAPE",
+    "DRAMATIC_SHAPE",
+    "DRAMATIC_SHAPE_VOXEL",
+    "DRAMATIC_SHAPE_VOXEL_MOD",
+  }
+
+  local function findDramaticShapeHost()
+    for _, id in ipairs(DRAMATIC_SHAPE_IDS) do
+      local ok, candidate = pcall(mod.find, id)
+      if ok and candidate and candidate.exports then
+        local lib = candidate.exports.lib
+        if type(lib) == "table" and type(lib.require) == "function" then
+          return candidate, lib, id
+        end
+      end
+    end
+
+    return nil, nil, nil
+  end
+
+  local ds, V, dramaticShapeId = findDramaticShapeHost()
+
+  if not V then
+    -- Do not crash or make the mod manager call the add-on incompatible.
+    -- The model overlay simply stays dormant until a compatible Dramatic Shape
+    -- build is installed/enabled.
+    mod.log:warn("No compatible Dramatic Shape voxel host detected; Gen1 TRUE 3D Characters are dormant")
     return
   end
 
-  local V = ds.exports.lib
+  mod.log:info(
+    "Dramatic Shape host detected via %s; enabling Gen1 TRUE 3D Characters",
+    tostring(dramaticShapeId)
+  )
+
   local VoxelScene = V.require("VoxelScene")
   local Voxel3D = V.require("Voxel3D")
   local Mat4 = V.require("Mat4")
@@ -532,5 +565,14 @@ return function(mod)
 
   VoxelScene._gen1UnifiedTrue3DInstalled = true
   VoxelScene._gen1UnifiedTrue3DPreviousDrawEntity = previousDrawEntity
-  mod.log:info("Gen1 TRUE 3D Characters v1.1.4 articulated arm rig installed")
+
+  mod.exports.hostDetected = true
+  mod.exports.hostId = dramaticShapeId
+  mod.exports.rendererInstalled = true
+  mod.exports.rendererError = nil
+
+  mod.log:info(
+    "Gen1 TRUE 3D Characters v1.1.6 articulated arm rig installed using %s",
+    tostring(dramaticShapeId)
+  )
 end
