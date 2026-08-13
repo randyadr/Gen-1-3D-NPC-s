@@ -1,16 +1,19 @@
 {
   "id": "gen1_true_3d_characters",
   "name": "Gen1 TRUE 3D Characters",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "entry": "main.lua",
   "api": 2,
   "profile": "content",
   "category": "GRAPHICS",
   "priority": 300,
-  "game_version": "0.0.0-dev || >=0.1.37 <2.0.0",
-  "dependencies": [
+  "game_version": "0.0.0-dev || >=0.1.30 <2.0.0",
+  "dependencies": [],
+  "optional_dependencies": [
+    "DRAMALESS_SHAPE@>=1.6.4 <2.0.0",
     "DRAMATIC_SHAPE@>=1.7.0 <2.0.0"
   ],
+  "conflicts": [],
   "permissions": [
     "engine_internals"
   ],
