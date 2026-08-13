@@ -4,7 +4,6 @@
 - Added support for DRAMALESS_SHAPE
 - Updated main.lua not tested with DRAMATIC_SHAPE
 
-# Gen1 TRUE 3D Characters v1.1.5
 ## v1.1.5 GitHub repository fix
 
 - GitHub repository is corrected in `manifest.json`: `randyadr/Gen-1-3D-NPC-s`
