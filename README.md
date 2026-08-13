@@ -1,3 +1,9 @@
+# Gen1 TRUE 3D Characters v1.1.6
+## v1.1.5 GitHub repository fix
+
+- Added support for DRAMALESS_SHAPE
+- Updated main.lua not tested with DRAMATIC_SHAPE
+
 # Gen1 TRUE 3D Characters v1.1.5
 ## v1.1.5 GitHub repository fix
 
